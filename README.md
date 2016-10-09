@@ -1,6 +1,9 @@
 # cTime
 JavaScipt has console.time(). Why not implement similiar thing to Python?
 
+## What is it?
+It's a simple timer that returns time in milliseconds from start to the end.
+Each timer has a name so you can identify them.
 ## Usage
 Place ``cTime.py`` and ``__init__.py`` into your project's folder.
 
@@ -28,6 +31,13 @@ Exception will be throw (I have to rethink if I really need custom error)
 * ``_round`` - round precision, must be integer, default ``2``
 * ``_print`` - make it ``True`` if you want cTime to automatically print results.
 If it's false, it will return a floating point number. Default ``False``
+
+If you want to stop it:
+``` Python
+cTime.timeEnd(name)
+```
+Where:
+* ``name`` - it's the name of the timer.
 
 See ``example.py`` for, well, you've guessed it, an example ;P
 
