@@ -1,7 +1,6 @@
 # It's console.time from JS in Python3
 
 import time as timee
-from decimal import Decimal
 
 class CollisionError(Exception):
 	pass
