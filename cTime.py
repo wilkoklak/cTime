@@ -1,37 +1,16 @@
-# It's console.time from JS in Python3
-
-import time as timee
-
-class CollisionError(Exception):
-	pass
+import time
+import decimal
 
 class Timer:
-	def __init__(self, name, r, p):
-		self.start = timee.time()
-		self.name = name
-		self.r = r
-		self.p = p
+	def __init__(self, log=True, precision=10):
+		self._log = log
+		self._precision = precision
+		self._start_time = time.perf_counter()
 	def stop(self):
-		tDelta = round((timee.time() - self.start) * 1000, self.r)
-		if self.p == True:
-			print('{} ended in: {} ms'.format(self.name, tDelta))
-		else:
-			return tDelta
-
-timers = []
-names = []
-def time(name, _round=2, _print=False):
-	if name not in names:
-		t = Timer(name, _round, _print)
-		timers.append(t)
-		names.append(name)
-	else:
-		raise CollisionError('Timer name already taken!')
-
-def timeEnd(name):
-	for t in timers:
-		if t.name == name:
-			r = t.stop()
-			names.remove(t.name)
-			timers.remove(t)
-			return r
+		self._end_time = time.perf_counter()
+		self._delta = self._end_time - self._start_time
+		r = decimal.Decimal(self._delta)
+		r = r.quantize(decimal.Decimal(10) ** -(self._precision))
+		if self._log:
+			print(r)
+		return r
